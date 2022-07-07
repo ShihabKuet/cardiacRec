@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C2E9F0"
+    tools:context=".home_2">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:layout_height="wrap_content"
+      android:layout_margin="10dp">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentTop="true"
+              android:layout_centerInParent="true"
+              android:fontFamily="sans-serif-condensed"
+              android:text="HELLO User"
+              android:textColor="@color/black"
+              android:textSize="30sp"
+              android:textStyle="bold">
+
+          </TextView>
+
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="120dp"
+              app:srcCompat="@drawable/heart_logo">
+
+          </ImageView>
+
+      </RelativeLayout>
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="160dp">
+      //add record img
+
+          <ImageView
+              android:id="@+id/addRecord"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:src="@drawable/recordadd"></ImageView>
+      </RelativeLayout>
+
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="160dp">
+          //show history img
+
+          <ImageView
+              android:id="@+id/showHistory"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:src="@drawable/histoy_edit"></ImageView>
+      </RelativeLayout>
+
+
+
+  </LinearLayout>
+
+</ScrollView>
