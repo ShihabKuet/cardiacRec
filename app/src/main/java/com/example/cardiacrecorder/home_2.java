@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Home extends AppCompatActivity {
+public class home_2 extends AppCompatActivity {
     ImageView addRecord,showHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home2);
 
         addRecord=findViewById(R.id.addRecord);
         showHistory=findViewById(R.id.showHistory);
@@ -23,7 +23,7 @@ public class Home extends AppCompatActivity {
         addRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this, addRecord.class);
+                Intent intent = new Intent(home_2.this, addRecord.class);
                 startActivity(intent);
             }
         });
@@ -32,7 +32,7 @@ public class Home extends AppCompatActivity {
         showHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this, showHistory.class);
+                Intent intent = new Intent(home_2.this, showHistory.class);
                 startActivity(intent);
 
             }
@@ -40,4 +40,5 @@ public class Home extends AppCompatActivity {
 
 
     }
+
 }
