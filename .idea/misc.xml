@@ -15,11 +15,18 @@
         <entry key="..\:/Software project/cardiacRec/app/src/main/res/drawable/dropbox_bg.xml" value="0.1625" />
         <entry key="..\:/Software project/cardiacRec/app/src/main/res/drawable/dropbox_selected_items.xml" value="0.1625" />
         <entry key="..\:/Software project/cardiacRec/app/src/main/res/drawable/edit_text_border.xml" value="0.1625" />
+        <entry key="..\:/Software project/cardiacRec/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1875" />
+        <entry key="..\:/Software project/cardiacRec/app/src/main/res/drawable/ic_baseline_view_sidebar.xml" value="0.199" />
         <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/activity_add_record.xml" value="0.264" />
+        <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/activity_home2.xml" value="0.25" />
+        <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/activity_registration.xml" value="0.264" />
+        <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/activity_show_history.xml" value="0.25" />
         <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/btn_bg.xml" value="0.20108695652173914" />
         <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/dropbox_item.xml" value="0.20108695652173914" />
         <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/dropped_item.xml" value="0.20108695652173914" />
         <entry key="..\:/Software project/cardiacRec/app/src/main/res/layout/selected_dropdown_item.xml" value="0.20108695652173914" />
+        <entry key="..\:/Software project/cardiacRec/app/src/main/res/menu/sidemenu.xml" value="0.25" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/CardiacRecorder/app/src/main/res/layout/activity_home.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/CardiacRecorder/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
       </map>
