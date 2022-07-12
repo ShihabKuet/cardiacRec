@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "978898736783",
+    "firebase_url": "https://crregistration-default-rtdb.firebaseio.com",
+    "project_id": "crregistration",
+    "storage_bucket": "crregistration.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978898736783:android:92c71817a214ede99ac2fa",
+        "android_client_info": {
+          "package_name": "com.example.cardiacrecorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978898736783-4uddr3sgo02vk2iiqa4r22f7dmdd9988.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBEcwGObscGoi6qAdQ8MD-RNTmewzuKBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978898736783-4uddr3sgo02vk2iiqa4r22f7dmdd9988.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
