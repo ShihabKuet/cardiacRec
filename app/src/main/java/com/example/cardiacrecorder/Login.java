@@ -23,11 +23,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends AppCompatActivity {
 
     FirebaseAuth mAuth;
-    FirebaseUser mUser;
 
     TextView crtnew;
-    EditText inputemail,inputpass;
-    ProgressBar progressBar ;
+    EditText inputemail, inputpass;
+    ProgressBar progressBar;
     Button log;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -39,7 +38,6 @@ public class Login extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        mUser = mAuth.getCurrentUser();
 
         inputemail = findViewById(R.id.inputemail);
         inputpass = findViewById(R.id.inputpass);
@@ -50,7 +48,7 @@ public class Login extends AppCompatActivity {
         crtnew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Login.this,Registration.class));
+                startActivity(new Intent(Login.this, Registration.class));
             }
         });
 
@@ -61,40 +59,42 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-    private  void PerforLogin(){
+
+    private void PerforLogin() {
         String email = inputemail.getText().toString();
         String password = inputpass.getText().toString();
 
-        if(!email.matches(emailPattern)){
+        if (!email.matches(emailPattern)) {
             inputemail.setError("Enter correct email");
+            inputemail.requestFocus();
+            return;
         }
-        else if(password.isEmpty() || password.length()<6)
-        {
+        if (password.isEmpty() || password.length() < 6) {
             inputpass.setError("Enter proper password");
+            inputpass.requestFocus();
+            return;
         }
-        else{
 
-            progressBar.setVisibility(View.VISIBLE);
-            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful())
-                    {
-                        progressBar.setVisibility(View.GONE);
-                        sendUserToNextActivity();
-                        Toast.makeText(Login.this,"Login Complete",Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(Login.this,""+task.getException(),Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(Login.this, "Login Complete", Toast.LENGTH_SHORT).show();
+                    sendUserToNextActivity();
 
-                    }
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(Login.this, "Failed to login" , Toast.LENGTH_SHORT).show();
+
                 }
-            });
-        }
+            }
+        });
+
 
     }
+
     private void sendUserToNextActivity() {
         Intent intent = new Intent(Login.this, home_2.class);
         startActivity(intent);

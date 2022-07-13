@@ -21,6 +21,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Registration extends AppCompatActivity {
@@ -28,9 +29,9 @@ public class Registration extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser mUser;
 
-    EditText inputname,inputemail,inputpass,inputpass2;
+    EditText inputname, inputemail, inputpass, inputpass2;
     TextView hvaccnt;
-    ProgressBar progressBar ;
+    ProgressBar progressBar;
     Button reg;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -39,7 +40,7 @@ public class Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_registration);
 
         // Initialize Firebase Auth
@@ -56,10 +57,9 @@ public class Registration extends AppCompatActivity {
 
 
         /*
-        * use last logged in account
-        * */
-        if(mUser != null)
-        {
+         * use last logged in account
+         * */
+        if (mUser != null) {
             sendUserToNextActivity();
             finish();
         }
@@ -68,7 +68,7 @@ public class Registration extends AppCompatActivity {
         hvaccnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Registration.this,Login.class));
+                startActivity(new Intent(Registration.this, Login.class));
             }
         });
 
@@ -83,49 +83,72 @@ public class Registration extends AppCompatActivity {
     }
 
     /*
-    * PerforAuth() method
-    * used for authentication and send value to firebase
-    * */
+     * PerforAuth() method
+     * used for authentication and send value to firebase
+     * */
 
     private void PerforAuth() {
+        String fullname = inputname.getText().toString();
         String email = inputemail.getText().toString();
         String password = inputpass.getText().toString();
         String confirmpassword = inputpass2.getText().toString();
 
-        if(!email.matches(emailPattern)){
+        if (!email.matches(emailPattern)) {
             inputemail.setError("Enter correct email");
+            inputemail.requestFocus();
+            return;
         }
-        else if(password.isEmpty() || password.length()<6)
-        {
+        if (fullname.isEmpty()) {
+            inputname.setError("Enter proper password");
+            inputname.requestFocus();
+            return;
+        }
+        if (password.isEmpty() || password.length() < 6) {
             inputpass.setError("Enter proper password");
+            inputpass.requestFocus();
+            return;
         }
-        else if(! password.equals(confirmpassword))
-        {
+        if (!password.equals(confirmpassword)) {
             inputpass2.setError("Both password doesn't match");
+            inputpass2.requestFocus();
+            return;
         }
-        else{
 
-            progressBar.setVisibility(View.VISIBLE);
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful())
-                    {
-                        progressBar.setVisibility(View.GONE);
-                        sendUserToNextActivity();
-                        Toast.makeText(Registration.this,"Registration Complete",Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(Registration.this,""+task.getException(),Toast.LENGTH_SHORT).show();
 
-                    }
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    User user = new User(fullname, email);
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(Registration.this, "Registration Complete", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                sendUserToNextActivity();
+                            } else {
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(Registration.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    });
                 }
-            });
-        }
+                else {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(Registration.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
 
     }
+
     private void sendUserToNextActivity() {
         Intent intent = new Intent(Registration.this, home_2.class);
         startActivity(intent);
