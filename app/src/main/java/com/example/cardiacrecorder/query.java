@@ -25,7 +25,7 @@ public class query extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
                     String clubkey = childSnapshot.getKey();
-                    String g;
+
             }
 
         });
