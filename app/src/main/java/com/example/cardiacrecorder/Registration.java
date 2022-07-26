@@ -120,37 +120,25 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    User user = new User(fullname, email);
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(Registration.this, "Registration Complete", Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
-                                sendUserToNextActivity();
-                            } else {
-                                progressBar.setVisibility(View.GONE);
-                                Toast.makeText(Registration.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-                    });
-                }
-                else {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(Registration.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Registration.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                    sendUserToNextActivity();
+                } else {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(Registration.this, "Registration Failed "+task.getException(), Toast.LENGTH_SHORT).show();
 
                 }
-
             }
         });
-
-
     }
-
     private void sendUserToNextActivity() {
         Intent intent = new Intent(Registration.this, home_2.class);
         startActivity(intent);
     }
+
+
 }
+
+
+
+
